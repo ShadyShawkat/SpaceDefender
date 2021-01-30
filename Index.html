@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            width: 100%;
+            overflow: hidden;
+            background-color: rgb(0, 4, 36);
+        }
+        
+        canvas {
+            margin-left: 500px;
+            border: 1px solid #d3d3d3;
+        }
+        
+        #scoreDiv {
+            position: fixed;
+            margin-top: 15px;
+            margin-left: 15px;
+            color: #fff;
+            font-size: 20px;
+            left: 510px;
+            font-weight: bold;
+            font-family: 'Segoe UI';
+            user-select: none;
+            display: none;
+        }
+        
+        .menu {
+            background-color: white;
+            width: 300px;
+            height: 250px;
+            margin: auto;
+            position: fixed;
+            top: 150px;
+            left: 600px;
+            border: 5px solid rgb(255, 123, 0);
+            border-radius: 20px;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        #gameOverDiv {
+            display: none;
+        }
+        
+        #gameOverDiv * {
+            margin: 0;
+        }
+        
+        #gameOverTxt {
+            font-size: 40px;
+            color: red;
+            font-weight: bold;
+            font-family: 'Segoe UI';
+            margin-top: 0;
+        }
+        
+        .gameScore {
+            font-size: 34px;
+            color: rgb(0, 185, 0);
+            font-weight: bold;
+            font-family: 'Segoe UI';
+        }
+        
+        .Btn {
+            background-color: rgb(24, 2, 226);
+            width: 200px;
+            height: 35px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            font-family: 'Segoe UI';
+            font-size: 20px;
+            outline: none;
+        }
+        
+        #saveScoreBtn {
+            background-color: rgb(255, 136, 0);
+            margin-top: 5px;
+        }
+        
+        #restartGameBtn {
+            font-size: 28px;
+            width: 250px;
+            height: 45px;
+            margin-top: 5px;
+        }
+        
+        #nameOfScore {
+            border: 2px solid black;
+            width: 100px;
+        }
+        
+        #startGameDiv {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+        
+        #startGameDiv * {
+            margin: 0;
+        }
+        
+        #gameTitle {
+            font-size: 30px;
+            font-weight: bold;
+            font-family: 'Segoe UI';
+            user-select: none;
+            animation: color-change 1s infinite;
+            margin-bottom: 10px;
+            position: absolute;
+        }
+        
+        @keyframes color-change {
+            0% {
+                color: red;
+                font-size: 30px;
+            }
+            25% {
+                color: purple;
+            }
+            50% {
+                color: blue;
+                font-size: 34px;
+            }
+            75% {
+                color: orange;
+            }
+            100% {
+                color: red;
+                font-size: 30px;
+            }
+        }
+        
+        #startGameBtn {
+            margin-top: 55px;
+            font-size: 28px;
+            width: 250px;
+            height: 45px;
+        }
+        
+        .scoreTxt {
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        #showScoreboardBtn {
+            background-color: purple;
+        }
+        
+        #clearScoreboard {
+            background-color: red;
+            width: 180px;
+            font-size: 18px;
+        }
+        
+        #scoreboardDiv {
+            display: none;
+            height: auto;
+            max-height: 250px;
+            padding-bottom: 15px;
+        }
+        
+        #backToMainMenuBtn {
+            justify-self: flex-end;
+            margin-top: 5px;
+            background-color: black;
+            width: 150px;
+        }
+        
+        #scores {
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            overflow-y: auto;
+        }
+        
+        #scores span {
+            width: 50%;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Segoe UI';
+            text-align: center;
+        }
+        
+        #scoreboardTxt {
+            font-size: 40px;
+            color: rgb(38, 207, 4);
+            font-weight: bold;
+            font-family: 'Segoe UI';
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="scoreDiv"><span>Score: </span> <span id="score">0</span></div>
+    <canvas></canvas>
+
+    <!-- game over div -->
+    <div id="gameOverDiv" class="menu">
+        <p id="gameOverTxt">Game Over</p>
+        <span class="scoreTxt">Current score: </span>
+        <span id="pointsScoredOnGameOver" class="gameScore">0</span>
+        <input type="text" id="nameOfScore">
+        <button id="saveScoreBtn" class="Btn">Save Your Score</button>
+        <div><button id="restartGameBtn" class="Btn">Restart</button></div>
+    </div>
+
+    <!-- start game div -->
+    <div id="startGameDiv" class="menu">
+        <h1 id="gameTitle">Space Defender</h1>
+        <button id="startGameBtn" class="Btn">Start</button>
+        <span class="scoreTxt">Highscore: <span id="highScore" class="gameScore">0</span></span>
+        <button id="showScoreboardBtn" class="Btn">Show Scoreboard</button>
+        <button class="Btn" id="clearScoreboard">Clear Scoreboard</button>
+    </div>
+
+    <!-- scoreboard div -->
+    <div id="scoreboardDiv" class="menu">
+        <h1 id="scoreboardTxt">Scoreboard</h1>
+        <div id="scores"></div>
+        <button class="Btn" id="backToMainMenuBtn">Back</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
